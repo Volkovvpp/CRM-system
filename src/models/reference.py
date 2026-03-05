@@ -1,6 +1,6 @@
 from datetime import datetime
 from decimal import Decimal
-from typing import List, Optional
+from typing import List, Optional, TYPE_CHECKING
 
 from sqlalchemy import String, Text, Boolean, DateTime, Numeric, Enum as SQLEnum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -8,6 +8,10 @@ from sqlalchemy.sql import func
 
 from .base import Base
 from .enums import EmployeeStatusEnum
+
+if TYPE_CHECKING:
+    from .crm import Client, Interaction
+    from .sales import Order, OrderItem
 
 
 class Location(Base):

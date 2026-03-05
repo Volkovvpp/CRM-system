@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from typing import List, Optional
+from typing import List, Optional, TYPE_CHECKING
 
 from sqlalchemy import String, Date, DateTime, Text, ForeignKey, CheckConstraint, Enum as SQLEnum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -7,6 +7,10 @@ from sqlalchemy.sql import func
 
 from .base import Base
 from .enums import ClientTypeEnum, ClientStatusEnum, GenderEnum, InteractionTypeEnum
+
+if TYPE_CHECKING:
+    from .reference import Location, Employee
+    from .sales import Order
 
 
 class Client(Base):

@@ -1,13 +1,17 @@
 from datetime import datetime
 from decimal import Decimal
-from typing import List, Optional
+from typing import List, Optional, TYPE_CHECKING
 
-from sqlalchemy import Integer, Numeric, DateTime, ForeignKey, Enum as SQLEnum
+from sqlalchemy import Integer, ForeignKey, Numeric, DateTime, Enum as SQLEnum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.sql import func
 
 from .base import Base
-from .enums import OrderStatusEnum
+from .enums import OrderStatusEnum  # <-- Добавлен импорт вашего ENUM
+
+if TYPE_CHECKING:
+    from .crm import Client
+    from .reference import Employee, Product
 
 
 class Order(Base):
